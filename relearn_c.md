@@ -165,6 +165,29 @@ no comments
 
 ![image-20230225203510079](relearn_c.assets/image-20230225203510079.png)
 
+## ex14
+
+主要是用到了ctype.h里面的isprint函数。
+
+函数	功能
+isalnum	检查 ch 是否为字母或数字
+isalpha	检查 ch 是否为字母
+isblank (C++11 only)	检查 ch 是否为’\t’ 或 ’ ’
+iscntrl	检查 ch 是否为控制字符（ ASCII值在 0 ~ 31）
+isdigit	检查 ch 是否为数字（ ‘0’ ~ ‘9’ ）
+isgraph	检查 ch 是否为可显示字符，不包括空格
+islower	检查 ch 是否为小写字母（‘a’ ~ ‘z’）
+isprint	检查 ch 是否为可打印字符，包括空格
+ispunct	检查 ch 是否为标点字符，即除字母，数字和空格以外的所有可打印字符
+isspace	检查 ch 是否为 ’ ', ‘\t’, ‘\n’, ‘\v’, ‘\f’, ‘\r’
+isupper	检查 ch 是否为大写字母（‘A’ ~ ‘Z’）
+isxdigit	检查 ch 是否为一个 16 进制的数学字符（即 ‘0’ ~ ‘9’ 或 ‘A’ ~ ‘F’ 或 ‘a’ - ‘f’）
+tolower	将 ch 字符转换成小写字母
+toupper	将 ch 字符转换成大写字母
+————————————————
+版权声明：本文为CSDN博主「ultraji」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_23827747/article/details/79705576
+
 
 
 # 学习Python
