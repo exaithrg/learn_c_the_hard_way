@@ -149,6 +149,22 @@ no comments
 
 no comments
 
+## ex13
+
+![image-20230225202536776](relearn_c.assets/image-20230225202536776.png)
+
+![image-20230225202542743](relearn_c.assets/image-20230225202542743.png)
+
+![image-20230225202557974](relearn_c.assets/image-20230225202557974.png)
+
+![image-20230225202628050](relearn_c.assets/image-20230225202628050.png)
+
+**大写转小写的用法**
+
+![image-20230225203518839](relearn_c.assets/image-20230225203518839.png)
+
+![image-20230225203510079](relearn_c.assets/image-20230225203510079.png)
+
 
 
 # 学习Python
