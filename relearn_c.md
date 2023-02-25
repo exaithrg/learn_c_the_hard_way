@@ -143,6 +143,10 @@ argc是argv中字符的个数，argv是一个字符串的数组。
 
 ## ex11
 
+no comments
+
+## ex12
+
 
 
 # 学习Python
