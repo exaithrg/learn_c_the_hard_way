@@ -7,4 +7,4 @@ modi:
 	make modi_ex9
 
 clean:
-	rm -f ex9
+	rm -f ex9 modi_ex9
