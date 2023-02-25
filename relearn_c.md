@@ -141,6 +141,8 @@ argc是argv中字符的个数，argv是一个字符串的数组。
 
 ![image-20230225195619036](relearn_c.assets/image-20230225195619036.png)
 
+## ex11
+
 
 
 # 学习Python
