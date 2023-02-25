@@ -250,9 +250,54 @@ ptr++
 
 ![image-20230225205851109](relearn_c.assets/image-20230225205851109.png)
 
+## ex16
 
 
-# 学习Python
+
+# Appendix
+
+## Zed的强大调试宏
+
+https://www.cntofu.com/book/25/ex20.md
+
+**或许可以用于大型C项目的维护工作**
+
+```c
+#ifndef __dbg_h__
+#define __dbg_h__
+
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+
+#ifdef NDEBUG
+#define debug(M, ...)
+#else
+#define debug(M, ...) fprintf(stderr, "DEBUG %s:%d: " M "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+#endif
+
+#define clean_errno() (errno == 0 ? "None" : strerror(errno))
+
+#define log_err(M, ...) fprintf(stderr, "[ERROR] (%s:%d: errno: %s) " M "\n", __FILE__, __LINE__, clean_errno(), ##__VA_ARGS__)
+
+#define log_warn(M, ...) fprintf(stderr, "[WARN] (%s:%d: errno: %s) " M "\n", __FILE__, __LINE__, clean_errno(), ##__VA_ARGS__)
+
+#define log_info(M, ...) fprintf(stderr, "[INFO] (%s:%d) " M "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+
+#define check(A, M, ...) if(!(A)) { log_err(M, ##__VA_ARGS__); errno=0; goto error; }
+
+#define sentinel(M, ...)  { log_err(M, ##__VA_ARGS__); errno=0; goto error; }
+
+#define check_mem(A) check((A), "Out of memory.")
+
+#define check_debug(A, M, ...) if(!(A)) { debug(M, ##__VA_ARGS__); errno=0; goto error; }
+
+#endif
+```
+
+
+
+## 学习Python
 
 笨办法学python：https://learnpythonthehardway.org/
 
