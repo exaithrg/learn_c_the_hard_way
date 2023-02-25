@@ -1,10 +1,10 @@
 CFLAGS=-Wall -g
 
 all:
-	make ex1
+	make ex11
 
 modi:
-	make modi_ex1
+	make modi_ex11
 
 clean:
-	rm -f ex1 modi_ex1
+	m -f ex10 modi_ex11
