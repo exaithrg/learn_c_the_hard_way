@@ -372,6 +372,81 @@ fflush什么意思
 
 理清内存的最简单的方式是遵守这条原则：如果你的变量并不是从`malloc`中获取的，也不是从一个从`malloc`获取的函数中获取的，那么它在栈上。
 
+## ex18
+
+重要解释：https://www.jianshu.com/p/a63b9575c86a
+
+函数指针的格式类似这样：
+
+```c
+int (*POINTER_NAME)(int a, int b)
+```
+
+记住如何编写它的一个方法是：
+
+- 编写一个普通的函数声明：`int callme(int a, int b)`
+- 将函数用指针语法包装：`int (*callme)(int a, int b)`
+- 将名称改成指针名称：`int (*compare_cb)(int a, int b)`
+
+这个方法的关键是，当你完成这些之后，指针的变量名称为`compare_cb`，而你可以将它用作函数。这类似于指向数组的指针可以表示所指向的数组。指向函数的指针也可以用作表示所指向的函数，只不过是不同的名字。
+
+```c
+int (*tester)(int a, int b) = sorted_order;
+printf("TEST: %d is same as %d\n", tester(2, 3), sorted_order(2, 3));
+```
+
+即使是对于返回指针的函数指针，上述方法依然有效：
+
+- 编写：`char *make_coolness(int awesome_levels)`
+- 包装：`char *(*make_coolness)(int awesome_levels)`
+- 重命名：`char *(*coolness_cb)(int awesome_levels)`
+
+**函数指针最核心的东西：可以把函数当成一个类型来传入另一个函数，并在另一个函数里面用。**
+
+```c
+// a typedef creates a fake type, in this
+// case for a function pointer
+// Example: typedef int myint_t
+//这个是定义一个类型，从此所有(int a, int b)的函数都可以叫compare_cb类型了，例如sorted_order，reverse_oreder,strange_order都可以用compare_cb传入函数体内。
+typedef int (*compare_cb)(int a, int b);
+
+
+/**
+ * A classic bubble sort function that uses the
+ * compare_cb to do the sorting.
+ */
+int *bubble_sort(int *numbers, int count, compare_cb cmp)
+{
+    int temp = 0;
+    int i = 0;
+    int j = 0;
+    int *target = malloc(count * sizeof(int));
+
+    if(!target) die("Memory error.");
+
+    memcpy(target, numbers, count * sizeof(int));
+
+    for(i = 0; i < count; i++) {
+        for(j = 0; j < count - 1; j++) {
+            if(cmp(target[j], target[j+1]) > 0) {
+                temp = target[j+1];
+                target[j+1] = target[j];
+                target[j] = temp;
+            }
+        }
+    }
+
+    return target;
+}
+
+```
+
+![image-20230226164023242](relearn_c.assets/image-20230226164023242.png)
+
+重要解释：https://www.jianshu.com/p/a63b9575c86a
+
+> 最后，你会看到`compare_cb`函数指针的`typedef`是如何使用的。我仅仅传递了`sorted_order`、`reverse_order`和`strange_order`的名字作为函数来调用`test_sorting`。C编译器会找到这些函数的地址，并且生成指针用于`test_sorting`。如果你看一眼`test_sorting`你会发现它把这些函数传给了`bubble_sort`，并不关心它们是做了什么。只要符合`compare_cb`原型的东西都有效。
+
 
 
 # Appendix
