@@ -256,6 +256,37 @@ ptr++
 
 # Appendix
 
+## Episode：安装valgrind
+
+注意，千万不要用南大源安装valgrind，南大源没有更新ubuntu3.1，如果强行用aptitude n+y安装，会导致libc6的降级，后果是重启后无法改变屏幕分辨率。
+
+![image-20230225171310900](relearn_c.assets/image-20230225171310900.png)
+
+出现上述问题完全是因为南大源比较垃圾，他没有针对2.35-0ubuntu3.1的valgrind，关键我又自作聪明的用aptitude强行降级已有的包，造成了各种驱动的不一致，最终后果就是电脑重启之后4K屏检测不到了，分辨率只有1024x768.
+
+解决方法是首先到`/etc/apt/`中把源换回cn.ubuntu.arxiv这种源，然后sudo apt upgrade全部升级回ubuntu3.1的libc6，然后sudo apt -u dist-upgrade强行更新所有的NV显卡驱动解决问题。执行过的命令包括：
+
+![image-20230226145308830](relearn_c.assets/image-20230226145308830.png)
+
+**大概花了一个半小时解决这个没法用我的4K显示器的问题**。又可以愉快的刷题了。
+
+重要命令包括：
+
+```shell
+cd /etc/apt
+sudo cp sources.list.bk1 sources.list
+sudo apt update
+apt list --upgradable
+sudo apt upgrade
+sudo apt -u dist-upgrade
+sudo apt install libc6=2.35-0ubuntu3.1(useless)
+sudo apt install valgrind
+```
+
+PS：Ubuntu官方源已经备份到了我的dotfiles。
+
+PS2：有时候挂着VPN会导致package.microsoft.com和cn.ubuntu.arichive变得更慢，所以如果apt get太慢，可以考虑把v2ray关掉。
+
 ## Zed的强大调试宏
 
 https://www.cntofu.com/book/25/ex20.md
