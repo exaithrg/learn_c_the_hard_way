@@ -447,6 +447,24 @@ int *bubble_sort(int *numbers, int count, compare_cb cmp)
 
 > 最后，你会看到`compare_cb`函数指针的`typedef`是如何使用的。我仅仅传递了`sorted_order`、`reverse_order`和`strange_order`的名字作为函数来调用`test_sorting`。C编译器会找到这些函数的地址，并且生成指针用于`test_sorting`。如果你看一眼`test_sorting`你会发现它把这些函数传给了`bubble_sort`，并不关心它们是做了什么。只要符合`compare_cb`原型的东西都有效。
 
+## ex20
+
+这个是Zed的调试宏。
+
+![image-20230226171011181](relearn_c.assets/image-20230226171011181.png)
+
+说实话，看的不是很懂，也不怎么会使
+
+**等下，这个好强啊，这个可以直接显示行号的，这个也太离谱了**
+
+**可以直接把这些宏当成printf用，这也太爽了**。
+
+
+
+## ex28
+
+这个是Makefile进阶，感觉是很重要的东西
+
 
 
 # Appendix
