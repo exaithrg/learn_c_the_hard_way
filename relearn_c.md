@@ -506,6 +506,105 @@ gdb_guide.assets/  gdb_guide.md*
 ➜  gdb
 ```
 
+## ex32
+
+报错：
+
+```shell
+➜  liblcthw git:(main) ✗ make clean
+rm -rf build src/lcthw/list.o tests/list_tests
+rm -f tests/tests.log
+find . -name "*.gc*" -exec rm {} \;
+rm -rf `find . -name "*.dSYM" -print`
+➜  liblcthw git:(main) ✗ make
+cc -g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG  -fPIC   -c -o src/lcthw/list.o src/lcthw/list.c
+ar rcs build/liblcthw.a src/lcthw/list.o
+ranlib build/liblcthw.a
+cc -shared -o build/liblcthw.so src/lcthw/list.o
+cc -g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG  build/liblcthw.a    tests/list_tests.c   -o tests/list_tests
+In file included from tests/list_tests.c:9:
+tests/list_tests.c: In function ‘main’:
+tests/minunit.h:23:38: warning: parameter ‘argc’ set but not used [-Wunused-but-set-parameter]
+   23 | #define RUN_TESTS(name) int main(int argc, char *argv[]) {\
+      |                                  ~~~~^~~~
+tests/list_tests.c:121:1: note: in expansion of macro ‘RUN_TESTS’
+  121 | RUN_TESTS(all_tests);
+      | ^~~~~~~~~
+/usr/bin/ld: /tmp/cc2k8dv9.o: in function `test_create':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:21: undefined reference to `List_create'
+/usr/bin/ld: /tmp/cc2k8dv9.o: in function `test_destroy':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:30: undefined reference to `List_clear_destroy'
+/usr/bin/ld: /tmp/cc2k8dv9.o: in function `test_push_pop':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:39: undefined reference to `List_push'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:42: undefined reference to `List_push'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:45: undefined reference to `List_push'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:49: undefined reference to `List_pop'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:52: undefined reference to `List_pop'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:55: undefined reference to `List_pop'
+/usr/bin/ld: /tmp/cc2k8dv9.o: in function `test_unshift':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:64: undefined reference to `List_unshift'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:67: undefined reference to `List_unshift'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:70: undefined reference to `List_unshift'
+/usr/bin/ld: /tmp/cc2k8dv9.o: in function `test_remove':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:82: undefined reference to `List_remove'
+/usr/bin/ld: /tmp/cc2k8dv9.o: in function `test_shift':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:96: undefined reference to `List_shift'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:99: undefined reference to `List_shift'
+/usr/bin/ld: /tmp/cc2k8dv9.o: in function `test_destroy':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:30: undefined reference to `List_clear_destroy'
+collect2: error: ld returned 1 exit status
+make: *** [<builtin>: tests/list_tests] Error 1
+➜  liblcthw git:(main) ✗ l
+bin/  build/  LICENSE  Makefile  README.md  src/  tests/
+➜  liblcthw git:(main) ✗ v
+➜  liblcthw git:(main) ✗ l
+bin/  build/  LICENSE  Makefile  README.md  src/  tests/
+➜  liblcthw git:(main) ✗ make
+ar rcs build/liblcthw.a src/lcthw/list.o
+ranlib build/liblcthw.a
+cc -shared -o build/liblcthw.so src/lcthw/list.o
+cc -g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG  build/liblcthw.a    tests/list_tests.c   -o tests/list_tests
+In file included from tests/list_tests.c:9:
+tests/list_tests.c: In function ‘main’:
+tests/minunit.h:23:38: warning: parameter ‘argc’ set but not used [-Wunused-but-set-parameter]
+   23 | #define RUN_TESTS(name) int main(int argc, char *argv[]) {\
+      |                                  ~~~~^~~~
+tests/list_tests.c:121:1: note: in expansion of macro ‘RUN_TESTS’
+  121 | RUN_TESTS(all_tests);
+      | ^~~~~~~~~
+/usr/bin/ld: /tmp/ccFAPThM.o: in function `test_create':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:21: undefined reference to `List_create'
+/usr/bin/ld: /tmp/ccFAPThM.o: in function `test_destroy':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:30: undefined reference to `List_clear_destroy'
+/usr/bin/ld: /tmp/ccFAPThM.o: in function `test_push_pop':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:39: undefined reference to `List_push'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:42: undefined reference to `List_push'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:45: undefined reference to `List_push'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:49: undefined reference to `List_pop'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:52: undefined reference to `List_pop'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:55: undefined reference to `List_pop'
+/usr/bin/ld: /tmp/ccFAPThM.o: in function `test_unshift':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:64: undefined reference to `List_unshift'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:67: undefined reference to `List_unshift'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:70: undefined reference to `List_unshift'
+/usr/bin/ld: /tmp/ccFAPThM.o: in function `test_remove':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:82: undefined reference to `List_remove'
+/usr/bin/ld: /tmp/ccFAPThM.o: in function `test_shift':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:96: undefined reference to `List_shift'
+/usr/bin/ld: /home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:99: undefined reference to `List_shift'
+/usr/bin/ld: /tmp/ccFAPThM.o: in function `test_destroy':
+/home/geng/githubrepos/learn_c_the_hard_way/liblcthw/tests/list_tests.c:30: undefined reference to `List_clear_destroy'
+collect2: error: ld returned 1 exit status
+make: *** [<builtin>: tests/list_tests] Error 1
+
+```
+
+**Refs:**
+
+https://github.com/preslavmihaylov/learn-c-the-hard-way
+
+https://github.com/abemassry/learn-c-the-hard-way
+
 
 
 
