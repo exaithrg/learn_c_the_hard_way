@@ -623,6 +623,83 @@ https://github.com/abemassry/learn-c-the-hard-way
 
 出现上述问题完全是因为南大源比较垃圾，他没有针对2.35-0ubuntu3.1的valgrind，关键我又自作聪明的用aptitude强行降级已有的包，造成了各种驱动的不一致，最终后果就是电脑重启之后4K屏检测不到了，分辨率只有1024x768.
 
+**PS**：不是南大源的问题，应该先保证你的南大源写法写对了，应该如下写：
+
+```shell
+#deb cdrom:[Ubuntu 22.04 LTS _Jammy Jellyfish_ - Release amd64 (20220419)]/ jammy main restricted
+
+# See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to
+# newer versions of the distribution.
+deb http://mirrors.nju.edu.cn/ubuntu/ jammy main restricted
+# deb-src http://mirrors.nju.edu.cn/ubuntu/ jammy main restricted
+
+## Major bug fix updates produced after the final release of the
+## distribution.
+deb http://mirrors.nju.edu.cn/ubuntu/ jammy-updates main restricted
+# deb-src http://mirrors.nju.edu.cn/ubuntu/ jammy-updates main restricted
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+## team. Also, please note that software in universe WILL NOT receive any
+## review or updates from the Ubuntu security team.
+deb http://mirrors.nju.edu.cn/ubuntu/ jammy universe
+# deb-src http://mirrors.nju.edu.cn/ubuntu/ jammy universe
+deb http://mirrors.nju.edu.cn/ubuntu/ jammy-updates universe
+# deb-src http://mirrors.nju.edu.cn/ubuntu/ jammy-updates universe
+
+## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu 
+## team, and may not be under a free licence. Please satisfy yourself as to 
+## your rights to use the software. Also, please note that software in 
+## multiverse WILL NOT receive any review or updates from the Ubuntu
+## security team.
+deb http://mirrors.nju.edu.cn/ubuntu/ jammy multiverse
+# deb-src http://mirrors.nju.edu.cn/ubuntu/ jammy multiverse
+deb http://mirrors.nju.edu.cn/ubuntu/ jammy-updates multiverse
+# deb-src http://mirrors.nju.edu.cn/ubuntu/ jammy-updates multiverse
+
+## N.B. software from this repository may not have been tested as
+## extensively as that contained in the main release, although it includes
+## newer versions of some applications which may provide useful features.
+## Also, please note that software in backports WILL NOT receive any review
+## or updates from the Ubuntu security team.
+deb http://mirrors.nju.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+# deb-src http://mirrors.nju.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+
+deb http://mirrors.nju.edu.cn/ubuntu jammy-security main restricted
+# deb-src http://mirrors.nju.edu.cn/ubuntu jammy-security main restricted
+deb http://mirrors.nju.edu.cn/ubuntu jammy-security universe
+# deb-src http://mirrors.nju.edu.cn/ubuntu jammy-security universe
+deb http://mirrors.nju.edu.cn/ubuntu jammy-security multiverse
+# deb-src http://mirrors.nju.edu.cn/ubuntu jammy-security multiverse
+
+# This system was installed using small removable media
+# (e.g. netinst, live or single CD). The matching "deb cdrom"
+# entries were disabled at the end of the installation process.
+# For information about how to configure apt package sources,
+# see the sources.list(5) manual.
+```
+
+我之所以版本旧，是因为我之前的sourcelist是这样写的：
+
+```sh
+# nju mirror for ubuntu 22.04
+
+# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirror.nju.edu.cn/ubuntu/ jammy main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ jammy main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb https://mirror.nju.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+
+# 预发布软件源，不建议启用
+# deb https://mirror.nju.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+# deb-src https://mirror.nju.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu/ jammy-security multiverse main restricted universe
+```
+
+可以看到漏掉了`jammy-updates`，怪不得更新不了。
+
 解决方法是首先到`/etc/apt/`中把源换回cn.ubuntu.arxiv这种源，然后sudo apt upgrade全部升级回ubuntu3.1的libc6，然后sudo apt -u dist-upgrade强行更新所有的NV显卡驱动解决问题。执行过的命令包括：
 
 ![image-20230226145308830](relearn_c.assets/image-20230226145308830.png)
