@@ -469,6 +469,10 @@ int *bubble_sort(int *numbers, int count, compare_cb cmp)
 
 
 
+## ex29
+
+这个是必须做的，否则不能做ex32。
+
 
 
 
