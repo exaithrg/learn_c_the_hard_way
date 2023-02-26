@@ -473,6 +473,41 @@ int *bubble_sort(int *numbers, int count, compare_cb cmp)
 
 这个是必须做的，否则不能做ex32。
 
+注意，他这个的核心是如何修改Makefile和test，看看我的改法：
+
+```shell
+Makefile:
+# TARGET=build/libYOUR_LIBRARY.a
+TARGET=build/libex29.a
+SO_TARGET=$(patsubst %.a,%.so,$(TARGET))
+
+tests/
+    then
+        if $VALGRIND ./$i build/libex29.so print_a_message "hello" 2>> tests/tests.log
+        then
+            echo $i PASS
+```
+
+
+
+## ex30
+
+![image-20230226210124126](relearn_c.assets/image-20230226210124126.png)
+
+## ex31
+
+详见
+
+```
+➜  gdb-ex31 git:(main) ✗ j gdb
+/home/geng/D/Manuals/Linux_Tools/gdb
+➜  gdb l
+gdb_guide.assets/  gdb_guide.md*
+➜  gdb
+```
+
+
+
 
 
 
