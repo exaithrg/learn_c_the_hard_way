@@ -336,6 +336,42 @@ int main(int argc, char *argv[])
 
 ## ex17
 
+这个是真看不懂
+
+```
+errno是一个全局关键字好像，记录错误代码
+perror应该是个系统函数
+Connection是一个struct，里面有个文件指针和一个Database，意为一一对应关系
+rewind是什么玩意
+fwrite的参数什么意思
+fflush什么意思
+为什么能用下面的语法
+    for(i = 0; i < MAX_ROWS; i++) {
+        // make a prototype to initialize it
+        struct Address addr = {.id = i, .set = 0};
+        // then just assign it
+        conn->db->rows[i] = addr;
+    }
+用于错误报告的 errno和perror
+
+当函数返回了一个错误时，它通常设置一个叫做errno的“外部”变量，来描述发生了什么错误。它们只是数字，所以你可以使用perror来“打印出错误信息”。
+文件函数
+
+我使用了一些新的函数，比如fopen，fread，fclose，和rewind来处理文件。这些函数中每个都作用于FILE结构体上，就像你的结构体似的，但是它由C标准库定义。
+
+嵌套结构体指针
+
+你应该学习这里的嵌套结构器和获取数组元素地址的用法，它读作“读取db中的conn中的rows的第i个元素，并返回地址（&）”。
+
+
+```
+
+
+
+![image-20230226161718144](relearn_c.assets/image-20230226161718144.png)
+
+理清内存的最简单的方式是遵守这条原则：如果你的变量并不是从`malloc`中获取的，也不是从一个从`malloc`获取的函数中获取的，那么它在栈上。
+
 
 
 # Appendix
