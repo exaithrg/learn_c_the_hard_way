@@ -76,12 +76,12 @@ List *List_merge_sort(List *list, comp_ll cmp){
     List_top_down_split_merge(res, 0, count, list, cmp);
 
     int i=0;
-    LIST_FOREACH(res,first,next,cur){
+    LIST_FOREACH(list,first,next,cur){
         printf("Merge Node %d: value = %s\n",i,cur->value);
         i++;
     }
 
-    return res;
+    return list;
 }
 
 // // Split A[] into 2 runs, sort both runs into B[], merge both runs from B[] to A[]

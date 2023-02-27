@@ -16,5 +16,4 @@ DEBUG tests/listalgo_tests.c:109:
 ----- test_bubble_sort
 DEBUG tests/listalgo_tests.c:110: 
 ----- test_merge_sort
-DEBUG tests/listalgo_tests.c:40: XXXX NDSS
-[ERROR] (tests/listalgo_tests.c:93: errno: None) Words are not sorted after merge sort.
+Segmentation fault (core dumped)
