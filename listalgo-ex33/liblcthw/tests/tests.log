@@ -1,0 +1,18 @@
+DEBUG tests/list_tests.c:121: ----- RUNNING: ./tests/list_tests
+DEBUG tests/list_tests.c:111: 
+----- test_create
+DEBUG tests/list_tests.c:112: 
+----- test_push_pop
+DEBUG tests/list_tests.c:113: 
+----- test_unshift
+DEBUG tests/list_tests.c:114: 
+----- test_remove
+DEBUG tests/list_tests.c:115: 
+----- test_shift
+DEBUG tests/list_tests.c:116: 
+----- test_destroy
+DEBUG tests/listalgo_tests.c:97: ----- RUNNING: ./tests/listalgo_tests
+DEBUG tests/listalgo_tests.c:91: 
+----- test_bubble_sort
+DEBUG tests/listalgo_tests.c:34: XXXX 1234
+[ERROR] (tests/listalgo_tests.c:49: errno: None) Words are not sorted after bubble sort.

@@ -22,9 +22,12 @@
     message = test(); tests_run++; if (message) return message;
 
 #define RUN_TESTS(name) int main(int argc, char *argv[]) {\
-    argc = 1; \
     debug("----- RUNNING: %s", argv[0]);\
         printf("----\nRUNNING: %s\n", argv[0]);\
+        if (argc > 1){\
+            debug(" %s: argc > 1", argv[0]);\
+            exit(1);\
+        }\
         char *result = name();\
         if (result != 0) {\
             printf("FAILED: %s\n", result);\
