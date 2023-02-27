@@ -607,7 +607,19 @@ https://github.com/abemassry/learn-c-the-hard-way
 
 
 
+## ex33
 
+**花了我4个小时。只给结果。**
+
+![image-20230227183040158](relearn_c.assets/image-20230227183040158.png)
+
+
+
+## ex42
+
+
+
+## ex44
 
 
 
