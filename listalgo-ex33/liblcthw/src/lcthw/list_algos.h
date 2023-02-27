@@ -35,7 +35,7 @@ typedef int (*comp_ll)(const char *s1, const char *s2);
 void swap_list_item(ListNode *first, ListNode *last);
 int List_bubble_sort(List *list, comp_ll cmp);
 
-void List_copy(List *srcl, List *destl);
+List* List_copy(List *srcl);
 void List_top_down_split_merge(List *lb, int iBegin, int iEnd, List *la, comp_ll cmp);
 ListNode* List_locnode(List *list, int pos);
 void List_top_down_merge(List *la, int iBegin, int iMiddle, int iEnd, List *lb, comp_ll cmp);

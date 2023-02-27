@@ -71,17 +71,16 @@ int List_bubble_sort(List *list, comp_ll cmp){
 
 List *List_merge_sort(List *list, comp_ll cmp){
     int count = list->count;
-    List *res = List_create();
-    List_copy(list, res);
+    List *res = List_copy(list);
     List_top_down_split_merge(res, 0, count, list, cmp);
-
+    List_destroy(res);
+    res = List_copy(list);
     int i=0;
-    LIST_FOREACH(list,first,next,cur){
+    LIST_FOREACH(res,first,next,cur){
         printf("Merge Node %d: value = %s\n",i,cur->value);
         i++;
     }
-
-    return list;
+    return res;
 }
 
 // // Split A[] into 2 runs, sort both runs into B[], merge both runs from B[] to A[]
@@ -174,9 +173,11 @@ void List_top_down_merge(List *la, int iBegin, int iMiddle, int iEnd, List *lb, 
 //     for (k = iBegin; k < iEnd; k++)
 //         B[k] = A[k];
 // }
-void List_copy(List *srcl, List *destl){
+List* List_copy(List *srcl){
+    List *destl = List_create();    
     LIST_FOREACH(srcl,first,next,cur){
         List_push(destl,cur->value);
     }
+    return destl;
 }
 
