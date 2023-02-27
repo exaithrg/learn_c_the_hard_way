@@ -7,8 +7,7 @@
 // Revision history:
 //***************************************************************
 #include "minunit.h"
-// #include "../src/lcthw/list.h"
-#include <list.h> 
+#include "../src/lcthw/list.h"
 #include <assert.h>
 
 static List *list = NULL;

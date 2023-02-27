@@ -10,6 +10,9 @@ SRC_DIR=./src
 LCTHW_DIR=$(SRC_DIR)/lcthw
 BUILD_DIR=./build
 TESTS_DIR=./tests
+
+# OPTFLAGS=-Werror -Wno-unused-function -Wno-unused-parameter
+OPTFLAGS=-Wno-unused-function -Wno-unused-parameter
  
 CC=gcc
 INCLUDES=-I$(SRC_DIR) -I$(LCTHW_DIR) 
@@ -45,8 +48,8 @@ $(DLIB_TARGET): $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(LIBS)
 
-# $(TESTS_DIR)/%.tst: $(TESTS_DIR)/%.c
-#     $(CC) $(CFLAGS) $< $(SLIB_TARGET) -o $@ $(LIBS)
+$(TESTS_DIR)/%: $(TESTS_DIR)/%.c
+	$(CC) $(CFLAGS) $< $(SLIB_TARGET) -o $@ $(LIBS)
 
 # The Unit Tests
 .PHONY: tests
