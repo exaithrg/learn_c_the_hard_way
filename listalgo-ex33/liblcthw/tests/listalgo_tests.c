@@ -24,6 +24,12 @@ List *create_words()
         List_push(words, values[i]);
     }
 
+    i = 0;
+    LIST_FOREACH(words,first,next,cur){
+        printf("Init Node %d: value = %s\n",i,cur->value);
+        i++;
+    }
+
     return words;
 }
 
@@ -77,6 +83,13 @@ char *test_merge_sort()
 
     // should work on a list that needs sorting
     List *res = List_merge_sort(words, strcmp);
+
+    int i=0;
+    LIST_FOREACH(res,first,next,cur){
+        printf("Test Merge Node %d: value = %s\n",i,cur->value);
+        i++;
+    }
+
     mu_assert(is_sorted(res), "Words are not sorted after merge sort.");
 
     List *res2 = List_merge_sort(res, strcmp);

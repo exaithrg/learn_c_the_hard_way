@@ -6,6 +6,7 @@
 // Created Time: Mon 27 Feb 2023 03:00:31 PM CST
 // Revision history:
 //***************************************************************
+#include "list.h"
 #include "list_algos.h"
 
 // Example: bubble sort with function pointer
@@ -52,15 +53,130 @@ int List_bubble_sort(List *list, comp_ll cmp){
             }
         }
     }
-    // int i=0;
-    // LIST_FOREACH(list,first,next,cur){
-    //     printf("Node %d: value = %s\n",i,cur->value);
-    //     i++;
-    // }
+    int i=0;
+    LIST_FOREACH(list,first,next,cur){
+        printf("Bubble Node %d: value = %s\n",i,cur->value);
+        i++;
+    }
     return 0;
 }
 
+// Example: Top-down merge sort from wikipedia
+// // Array A[] has the items to sort; array B[] is a work array.
+// void TopDownMergeSort(A[], B[], n)
+// {
+//     CopyArray(A, 0, n, B);           // one time copy of A[] to B[]
+//     TopDownSplitMerge(B, 0, n, A);   // sort data from B[] into A[]
+// }
+
 List *List_merge_sort(List *list, comp_ll cmp){
-    return 0;
+    int count = list->count;
+    List *res = List_create();
+    List_copy(list, res);
+    List_top_down_split_merge(res, 0, count, list, cmp);
+
+    int i=0;
+    LIST_FOREACH(res,first,next,cur){
+        printf("Merge Node %d: value = %s\n",i,cur->value);
+        i++;
+    }
+
+    return res;
+}
+
+// // Split A[] into 2 runs, sort both runs into B[], merge both runs from B[] to A[]
+// // iBegin is inclusive; iEnd is exclusive (A[iEnd] is not in the set).
+// void TopDownSplitMerge(B[], iBegin, iEnd, A[])
+// {
+//     if (iEnd - iBegin <= 1)                     // if run size == 1
+//         return;                                 //   consider it sorted
+//     // split the run longer than 1 item into halves
+//     iMiddle = (iEnd + iBegin) / 2;              // iMiddle = mid point
+//     // recursively sort both runs from array A[] into B[]
+//     TopDownSplitMerge(A, iBegin,  iMiddle, B);  // sort the left  run
+//     TopDownSplitMerge(A, iMiddle,    iEnd, B);  // sort the right run
+//     // merge the resulting runs from array B[] into A[]
+//     TopDownMerge(B, iBegin, iMiddle, iEnd, A);
+// }
+void List_top_down_split_merge(List *lb, int iBegin, int iEnd, List *la, comp_ll cmp){
+    if (iEnd - iBegin <= 1)                     // if run size == 1
+        return;                                 //   consider it sorted
+    // split the run longer than 1 item into halves
+    int iMiddle = (iEnd + iBegin) / 2;              // iMiddle = mid point
+    // recursively sort both runs from array A[] into B[]
+    List_top_down_split_merge(la, iBegin,  iMiddle, lb, cmp);  // sort the left  run
+    List_top_down_split_merge(la, iMiddle,    iEnd, lb, cmp);  // sort the right run
+    // merge the resulting runs from array B[] into A[]
+    List_top_down_merge(lb, iBegin, iMiddle, iEnd, la, cmp);
+    return;
+}
+
+// //  Left source half is A[ iBegin:iMiddle-1].
+// // Right source half is A[iMiddle:iEnd-1   ].
+// // Result is            B[ iBegin:iEnd-1   ].
+// void TopDownMerge(A[], iBegin, iMiddle, iEnd, B[])
+// {
+//     i = iBegin, j = iMiddle;
+//
+//     // While there are elements in the left or right runs...
+//     for (k = iBegin; k < iEnd; k++) {
+//         // If left run head exists and is <= existing right run head.
+//         if (i < iMiddle && (j >= iEnd || A[i] <= A[j])) {
+//             B[k] = A[i];
+//             i = i + 1;
+//         } else {
+//             B[k] = A[j];
+//             j = j + 1;
+//         }
+//     }
+// }
+
+ListNode* List_locnode(List *list, int pos){
+    ListNode* ln;
+    int i;
+    for(i=0, ln=list->first; i<pos && ln!=NULL; ln = ln->next, i++);
+    return ln;
+}
+
+void List_top_down_merge(List *la, int iBegin, int iMiddle, int iEnd, List *lb, comp_ll cmp){
+    int i = iBegin;
+    int j = iMiddle;
+    int k = iBegin;
+    
+    // pointer list node a/b i/j/k
+    ListNode* plnai = List_locnode(la, i);
+    ListNode* plnaj = List_locnode(la, j);
+    ListNode* plnbk = List_locnode(lb, k);
+
+    // While there are elements in the left or right runs...
+    while(k<iEnd){
+        // If left run head exists and is <= existing right run head.
+        // if (i < iMiddle && (j >= iEnd || A[i] <= A[j])) {
+        if (i < iMiddle && (j >= iEnd || cmp(plnai->value, plnaj->value) <= 0)) {
+            plnbk->value = plnai->value;
+            // B[k] = A[i];
+            i = i + 1;
+            plnai = plnai->next;
+        } else {
+            plnbk->value = plnaj->value;
+            // B[k] = A[j];
+            j = j + 1;
+            plnaj = plnaj->next;
+        }
+        plnbk = plnbk->next;
+        k++;
+    }
+    return;
+}
+
+// void CopyArray(A[], iBegin, iEnd, B[])
+// {
+//     for (k = iBegin; k < iEnd; k++)
+//         B[k] = A[k];
+// }
+void List_copy(List *srcl, List *destl){
+    LIST_FOREACH(srcl,first,next,cur){
+        List_push(destl,cur->value);
+    }
 }
 
