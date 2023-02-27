@@ -14,31 +14,10 @@
 #include <stdlib.h>
 #include "list.h"
 
-// Reference
-// struct ListNode;
-// 
-// typedef struct ListNode {
-//     struct ListNode *next;
-//     struct ListNode *prev;
-//     void *value;
-// } ListNode;
-// 
-// typedef struct List {
-//     int count;
-//     ListNode *first;
-//     ListNode *last;
-// } List;
+typedef int (*List_compare)(const void *a, const void *b);
 
-// function pointer, compare_linklist
-typedef int (*comp_ll)(const char *s1, const char *s2);
+int List_bubble_sort(List *list, List_compare cmp);
 
-void swap_list_item(ListNode *first, ListNode *last);
-int List_bubble_sort(List *list, comp_ll cmp);
-
-List* List_copy(List *srcl);
-void List_top_down_split_merge(List *lb, int iBegin, int iEnd, List *la, comp_ll cmp);
-ListNode* List_locnode(List *list, int pos);
-void List_top_down_merge(List *la, int iBegin, int iMiddle, int iEnd, List *lb, comp_ll cmp);
-List* List_merge_sort(List *list, comp_ll cmp);
+List *List_merge_sort(List *list, List_compare cmp);
 
 #endif
