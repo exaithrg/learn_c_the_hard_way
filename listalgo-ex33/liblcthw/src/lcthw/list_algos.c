@@ -33,7 +33,16 @@
 //     return target;
 // }
 
+void swap_list_item(ListNode *first, ListNode *last){
+    void *temp;
+    temp = last->value;
+    last->value = first->value;
+    first->value = temp;
+    return;
+}
+
 int List_bubble_sort(List *list, comp_ll cmp){
+
     return 0;
 }
 
