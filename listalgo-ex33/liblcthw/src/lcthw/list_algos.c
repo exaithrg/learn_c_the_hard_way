@@ -42,7 +42,21 @@ void swap_list_item(ListNode *first, ListNode *last){
 }
 
 int List_bubble_sort(List *list, comp_ll cmp){
-
+    // pointer list node i and j
+    ListNode* plni;
+    ListNode* plnj;
+    for(plni = list->first; plni != NULL; plni = plni->next){
+        for(plnj = list->first; plnj->next != NULL; plnj = plnj->next){
+            if(cmp(plnj->value,plnj->next->value)>0){
+                swap_list_item(plnj,plnj->next);
+            }
+        }
+    }
+    // int i=0;
+    // LIST_FOREACH(list,first,next,cur){
+    //     printf("Node %d: value = %s\n",i,cur->value);
+    //     i++;
+    // }
     return 0;
 }
 

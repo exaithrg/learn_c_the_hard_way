@@ -15,6 +15,7 @@ use vg(valgrind) ./ex[num] to monitor execute flow
 
 How to use c-skeleton:
 just make it. test will start automatically.
+if src is modified, must mk clean first, then rerun mk
 
 Thanks:
 https://github.com/preslavmihaylov/learn-c-the-hard-way

@@ -11,8 +11,9 @@ DEBUG tests/list_tests.c:115:
 ----- test_shift
 DEBUG tests/list_tests.c:116: 
 ----- test_destroy
-DEBUG tests/listalgo_tests.c:97: ----- RUNNING: ./tests/listalgo_tests
-DEBUG tests/listalgo_tests.c:91: 
+DEBUG tests/listalgo_tests.c:102: ----- RUNNING: ./tests/listalgo_tests
+DEBUG tests/listalgo_tests.c:96: 
 ----- test_bubble_sort
-DEBUG tests/listalgo_tests.c:34: XXXX 1234
-[ERROR] (tests/listalgo_tests.c:49: errno: None) Words are not sorted after bubble sort.
+DEBUG tests/listalgo_tests.c:97: 
+----- test_merge_sort
+Segmentation fault (core dumped)

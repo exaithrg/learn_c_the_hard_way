@@ -43,6 +43,11 @@ char *test_bubble_sort()
 {
     List *words = create_words();
 
+    // LIST_FOREACH(words, first, next, cur) {
+    //     printf("%s ", (char *)cur->value);
+    // }
+    // printf("\n");
+
     // should work on a list that needs sorting
     int rc = List_bubble_sort(words, strcmp);
     mu_assert(rc == 0, "Bubble sort failed.");

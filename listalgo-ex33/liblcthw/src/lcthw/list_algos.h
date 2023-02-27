@@ -10,6 +10,7 @@
 #ifndef lcthw_List_Algos_h
 #define lcthw_List_Algos_h
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
 
