@@ -1,4 +1,4 @@
-Website: https://www.cntofu.com/book/25/index.html
+Lesson Website: https://www.cntofu.com/book/25/index.html
 Mission: prac0-18 prac32 prac33 prac42 prac44
 Study Note: /home/geng/githubrepos/learn_c_the_hard_way/relearn_c.md
 More Note: Linux_Tools/gdb/gdb_guide.md
@@ -13,4 +13,8 @@ use vg(valgrind) ./ex[num] to monitor execute flow
 
 How to use c-skeleton:
 just make it. test will start automatically.
+
+Thanks:
+https://github.com/preslavmihaylov/learn-c-the-hard-way
+https://github.com/abemassry/learn-c-the-hard-way
 
