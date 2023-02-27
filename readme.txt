@@ -11,3 +11,6 @@ use make/make modi/make clean to generate/clean exeutable files
 use ./ex[um] argv or ./modi_ex[num] to run
 use vg(valgrind) ./ex[num] to monitor execute flow
 
+How to use c-skeleton:
+just make it. test will start automatically.
+
