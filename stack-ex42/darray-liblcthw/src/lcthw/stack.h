@@ -20,8 +20,8 @@ typedef DArray Stack;
 
 #define Stack_create() DArray_create(0,1)
 #define Stack_destroy DArray_destroy
-#define Stack_clear List_clear
-#define Stack_clear_destroy List_clear_destroy
+#define Stack_clear DArray_clear
+#define Stack_clear_destroy DArray_clear_destroy
 
 #define Stack_push DArray_push
 #define Stack_pop DArray_pop
