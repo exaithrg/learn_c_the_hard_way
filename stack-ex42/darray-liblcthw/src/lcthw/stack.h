@@ -11,27 +11,26 @@
 #define lcthw_Stack_h
 
 #include <stdlib.h>
-#include "list.h"
+// #include "list.h"
+#include "darray.h"
 
 // Stack Implementation based on list
 
-typedef List Stack;
+typedef DArray Stack;
 
-#define Stack_create List_create
-#define Stack_destroy List_destroy
+#define Stack_create() DArray_create(0,1)
+#define Stack_destroy DArray_destroy
 #define Stack_clear List_clear
 #define Stack_clear_destroy List_clear_destroy
 
-#define Stack_push List_push
-#define Stack_pop List_pop
-#define Stack_peek List_last
+#define Stack_push DArray_push
+#define Stack_pop DArray_pop
+#define Stack_peek DArray_last
 
-#define Stack_count List_count
+#define Stack_count DArray_count
 
 #define STACK_FOREACH(stack, cur) \
-	ListNode *cur = stack->first;\
-    for (ListNode *_node = stack->first; \
-         _node != NULL; \
-         cur = _node = _node->next)
+    for (int cur=0; cur<stack->end; cur++) \
 
 #endif
+

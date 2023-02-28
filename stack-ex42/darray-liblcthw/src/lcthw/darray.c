@@ -9,6 +9,13 @@
 #include "darray.h"
 #include <assert.h>
 
+// typedef struct DArray {
+//     int end;
+//     int max;
+//     size_t element_size;
+//     size_t expand_rate;
+//     void **contents;
+// } DArray;
 
 DArray *DArray_create(size_t element_size, size_t initial_max)
 {
