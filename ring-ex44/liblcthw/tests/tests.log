@@ -38,11 +38,21 @@ DEBUG tests/queue_tests.c:45: VAL: test2 data
 DEBUG tests/queue_tests.c:45: VAL: test1 data
 DEBUG tests/queue_tests.c:63: 
 ----- test_destroy
-DEBUG tests/ringbuffer_tests.c:195: ----- RUNNING: ./tests/ringbuffer_tests
-DEBUG tests/ringbuffer_tests.c:185: 
+DEBUG tests/ringbuffer_tests.c:76: ----- RUNNING: ./tests/ringbuffer_tests
+DEBUG tests/ringbuffer_tests.c:66: 
 ----- test_create
-DEBUG tests/ringbuffer_tests.c:187: 
+DEBUG tests/ringbuffer_tests.c:68: 
 ----- test_read_write
 DEBUG src/lcthw/ringbuffer.c:58: Not enough in the buffer: has 0, needs 1
-DEBUG src/lcthw/ringbuffer.c:58: Not enough in the buffer: has 0, needs 4
-Segmentation fault (core dumped)
+DEBUG tests/ringbuffer_tests.c:70: 
+----- test_destroy
+DEBUG tests/stack_tests.c:67: ----- RUNNING: ./tests/stack_tests
+DEBUG tests/stack_tests.c:60: 
+----- test_create
+DEBUG tests/stack_tests.c:61: 
+----- test_push_pop
+DEBUG tests/stack_tests.c:44: VAL: test1 data
+DEBUG tests/stack_tests.c:44: VAL: test2 data
+DEBUG tests/stack_tests.c:44: VAL: test3 data
+DEBUG tests/stack_tests.c:62: 
+----- test_destroy
