@@ -14,6 +14,8 @@
 #include <errno.h>
 #include <string.h>
 
+// #define VERBOSE_PRINT
+
 #ifdef NDEBUG
 #define debug(M, ...)
 #else

@@ -52,8 +52,19 @@ void *List_shift(List *list);
 void *List_remove(List *list, ListNode *node);
 
 // traverse the list
+// -------------------------------------------------------------------------
+// example: LIST_FOREACH(list, first, next, cur)
+// -------------------------------------------------------------------------
+// will be expanded as
+// -------------------------------------------------------------------------
+// ListNode *_node = NULL;
+// ListNode *cur = NULL;
+// for(cur = _node = list->first; _node != NULL; cur = _node = _node->next)
+// -------------------------------------------------------------------------
+// Note: list->first, node->next. 
 #define LIST_FOREACH(L, S, M, V) ListNode *_node = NULL;\
     ListNode *V = NULL;\
     for(V = _node = L->S; _node != NULL; V = _node = _node->M)
 
 #endif
+
