@@ -1,0 +1,48 @@
+DEBUG tests/darray_tests.c:132: ----- RUNNING: ./tests/darray_tests
+DEBUG tests/darray_tests.c:120: 
+----- test_create
+DEBUG tests/darray_tests.c:121: 
+----- test_new
+DEBUG tests/darray_tests.c:122: 
+----- test_set
+DEBUG tests/darray_tests.c:123: 
+----- test_get
+DEBUG tests/darray_tests.c:124: 
+----- test_remove
+DEBUG tests/darray_tests.c:125: 
+----- test_expand_contract
+DEBUG tests/darray_tests.c:126: 
+----- test_push_pop
+DEBUG tests/darray_tests.c:127: 
+----- test_destroy
+DEBUG tests/list_tests.c:121: ----- RUNNING: ./tests/list_tests
+DEBUG tests/list_tests.c:111: 
+----- test_create
+DEBUG tests/list_tests.c:112: 
+----- test_push_pop
+DEBUG tests/list_tests.c:113: 
+----- test_unshift
+DEBUG tests/list_tests.c:114: 
+----- test_remove
+DEBUG tests/list_tests.c:115: 
+----- test_shift
+DEBUG tests/list_tests.c:116: 
+----- test_destroy
+DEBUG tests/queue_tests.c:68: ----- RUNNING: ./tests/queue_tests
+DEBUG tests/queue_tests.c:61: 
+----- test_create
+DEBUG tests/queue_tests.c:62: 
+----- test_send_recv
+DEBUG tests/queue_tests.c:45: VAL: test3 data
+DEBUG tests/queue_tests.c:45: VAL: test2 data
+DEBUG tests/queue_tests.c:45: VAL: test1 data
+DEBUG tests/queue_tests.c:63: 
+----- test_destroy
+DEBUG tests/ringbuffer_tests.c:195: ----- RUNNING: ./tests/ringbuffer_tests
+DEBUG tests/ringbuffer_tests.c:185: 
+----- test_create
+DEBUG tests/ringbuffer_tests.c:187: 
+----- test_read_write
+DEBUG src/lcthw/ringbuffer.c:58: Not enough in the buffer: has 0, needs 1
+DEBUG src/lcthw/ringbuffer.c:58: Not enough in the buffer: has 0, needs 4
+Segmentation fault (core dumped)
